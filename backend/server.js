@@ -1,6 +1,9 @@
+
+
+import dotenv from "dotenv";
+dotenv.config();
 import path from "path";
 import express from "express";
-import dotenv from "dotenv";
 import connectDB from "./db/connectDB.js";
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js";
@@ -14,7 +17,7 @@ import cors from "cors";
 // 	origin: "http://localhost:3000/"
 // }));
 
-dotenv.config();
+
 console.log("PORT:", process.env.PORT);
 connectDB();
 // job.start();

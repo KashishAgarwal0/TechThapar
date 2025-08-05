@@ -1,6 +1,6 @@
 
 
-TheGram is a social media platform social media platform that offers a range of modern features, including a vibrant home content feed, user authentication, and real-time messaging powered by Socket.IO. (Notifications button is only for display)
+TechThapar is a social media platform social media platform that offers a range of modern features, including a vibrant home content feed, user authentication, and real-time messaging powered by Socket.IO. (Notifications button is only for display)
 
 ![TheGramEg1](https://github.com/user-attachments/assets/0ebf944a-2bf3-478d-8e55-9e212d3fb2b4)
 
