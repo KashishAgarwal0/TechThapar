@@ -16,6 +16,7 @@
     "@emotion/styled": "^11.11.0",
     "@tailwindcss/vite": "^4.1.11",
     "backend": "file:..",
+    "daisyui": "^5.0.50",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.4",
     "lucide-react": "^0.536.0",
