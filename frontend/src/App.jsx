@@ -16,6 +16,7 @@ import ProfilePage from "./pages/ProfilePage";
 import UpdateProfilePage from "./components/Profile/UpdateProfilePage";
 import ChatPage from "./pages/ChatPage";
 import { SettingsPage } from "./pages/SettingsPage";
+import LandingPage from "./pages/LandingPage";
 import userAtom from "./atoms/userAtom";
 
 import { sunsetTheme } from "./themes/sunsetTheme";
@@ -23,7 +24,6 @@ import { winterTheme } from "./themes/winterTheme";
 
 function App() {
   const user = useRecoilValue(userAtom);
-
   const [themeName, setThemeName] = useState(() => localStorage.getItem("theme") || "sunset");
 
   const toggleTheme = () => {
@@ -33,18 +33,15 @@ function App() {
   };
 
   const currentTheme = themeName === "sunset" ? sunsetTheme : winterTheme;
-
-  // Determine icon and accessible label based on theme
   const ToggleIcon = themeName === "sunset" ? MoonIcon : SunIcon;
   const toggleLabel = themeName === "sunset" ? "Switch to Winter Theme" : "Switch to Sunset Theme";
-
   const iconColor = useColorModeValue("white", "gray.100");
   const bgColor = useColorModeValue("black", "gray.700");
 
   return (
     <ChakraProvider theme={currentTheme}>
       <ColorModeScript initialColorMode={currentTheme.config.initialColorMode} />
-      
+
       {/* Theme Toggle Button */}
       <div style={{ padding: "1rem", textAlign: "right" }}>
         <IconButton
@@ -59,16 +56,22 @@ function App() {
         />
       </div>
 
-      <PageLayout>
-        <Routes>
-          <Route path="/" element={user ? <HomePage /> : <Navigate to="/auth" />} />
-          <Route path="/auth" element={!user ? <AuthPage /> : <Navigate to="/" />} />
+      <Routes>
+        {/* Public Route - Landing Page */}
+        <Route path="/" element={<LandingPage />} />
+        
+        {/* Public Route - Auth */}
+        <Route path="/auth" element={!user ? <AuthPage /> : <Navigate to="/home" />} />
+
+        {/* Protected Routes wrapped with PageLayout */}
+        <Route element={<PageLayout />}>
+          <Route path="/home" element={user ? <HomePage /> : <Navigate to="/auth" />} />
           <Route path="/:username" element={<ProfilePage />} />
           <Route path="/update" element={user ? <UpdateProfilePage /> : <Navigate to="/auth" />} />
           <Route path="/chat" element={user ? <ChatPage /> : <Navigate to="/auth" />} />
           <Route path="/settings" element={user ? <SettingsPage /> : <Navigate to="/auth" />} />
-        </Routes>
-      </PageLayout>
+        </Route>
+      </Routes>
     </ChakraProvider>
   );
 }
