@@ -8,29 +8,31 @@ import ProfilePage from "./pages/ProfilePage";
 import UpdateProfilePage from "./components/Profile/UpdateProfilePage";
 import ChatPage from "./pages/ChatPage";
 import { SettingsPage } from "./pages/SettingsPage";
-// import './App.css'
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   const user = useRecoilValue(userAtom);
-  // console.log(user);
 
   return (
-    <>
-      <PageLayout>
-        <Routes>
-          <Route path='/' element={user ? <HomePage /> : <Navigate to='/auth' />} />
-          <Route path='/auth' element={!user ? <AuthPage /> : <Navigate to='/' />} />
-          <Route path='/:username' element={<ProfilePage />} />
-          
-          {/* <Route path='/:username/post/:pid' element={<PostPage />} /> */}
-					
-          <Route path='/update' element={user ? <UpdateProfilePage /> : <Navigate to='/auth' />} />
-          <Route path='/chat' element={user ? <ChatPage /> : <Navigate to={"/auth"} />} />
-					<Route path='/settings' element={user ? <SettingsPage /> : <Navigate to={"/auth"} />} />
-        </Routes>
-      </PageLayout>
-    </>
-  )
+    <Routes>
+      {/* Public Routes */}
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/auth" element={!user ? <AuthPage /> : <Navigate to="/chat" />} />
+
+      {/* Protected Routes - Wrapped in PageLayout */}
+      {user && (
+        <Route element={<PageLayout />}>
+          <Route path="/:username" element={<ProfilePage />} />
+          <Route path="/update" element={<UpdateProfilePage />} />
+          <Route path="/chat" element={<ChatPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Route>
+      )}
+
+      {/* Redirect unknown routes to home */}
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
