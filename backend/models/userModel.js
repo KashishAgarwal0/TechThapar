@@ -47,6 +47,13 @@ const userSchema = mongoose.Schema(
 			ref: "Post",
 			default: [],
 		},
+		otp: {
+			type: String,
+	
+		},
+		otpExpiry: {
+			type: Date,
+		}
 
 	},
 	{

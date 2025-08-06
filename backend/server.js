@@ -13,7 +13,9 @@ import { v2 as cloudinary } from "cloudinary";
 import { app, server } from "./socket/socket.js";
 import job from "./cron/cron.js";
 import cors from "cors";
+
 // app.use(cors({
+
 // 	origin: "http://localhost:3000/"
 // }));
 
@@ -40,7 +42,6 @@ app.use(cookieParser());
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/messages", messageRoutes);
-
 
 // http://localhost:5000 => backend,frontend
 // console.log("process.env", process.env.NODE_ENV);

@@ -17,7 +17,7 @@ import UpdateProfilePage from "./components/Profile/UpdateProfilePage";
 import ChatPage from "./pages/ChatPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import userAtom from "./atoms/userAtom";
-
+import VerifyOtpPage from "./pages/VerifyOtpPage";
 import { sunsetTheme } from "./themes/sunsetTheme";
 import { winterTheme } from "./themes/winterTheme";
 
@@ -67,6 +67,8 @@ function App() {
           <Route path="/update" element={user ? <UpdateProfilePage /> : <Navigate to="/auth" />} />
           <Route path="/chat" element={user ? <ChatPage /> : <Navigate to="/auth" />} />
           <Route path="/settings" element={user ? <SettingsPage /> : <Navigate to="/auth" />} />
+           
+           <Route path='/verify-otp' element={<VerifyOtpPage />} />
         </Routes>
       </PageLayout>
     </ChakraProvider>
