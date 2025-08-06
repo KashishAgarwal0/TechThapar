@@ -64,7 +64,7 @@ function App() {
         <Route path="/auth" element={!user ? <AuthPage /> : <Navigate to="/home" />} />
 
         {/* Protected Routes wrapped with PageLayout */}
-        <Route element={<PageLayout />}>
+        <Route element={<PageLayout />} />
           <Route path="/home" element={user ? <HomePage /> : <Navigate to="/auth" />} />
           <Route path="/:username" element={<ProfilePage />} />
           <Route path="/update" element={user ? <UpdateProfilePage /> : <Navigate to="/auth" />} />
@@ -73,7 +73,7 @@ function App() {
            
            <Route path='/verify-otp' element={<VerifyOtpPage />} />
         </Routes>
-      </PageLayout>
+
     </ChakraProvider>
   );
 }
